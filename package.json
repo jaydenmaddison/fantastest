@@ -1,0 +1,74 @@
+{
+  "name": "fantastest",
+  "description": "Test for Fantastec",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "test": "npm run eslint && npm run tsc-test && npm run jest",
+    "eslint": "eslint --ext .ts,.tsx .",
+    "tsc-test": "tsc --project . --noEmit",
+    "jest": "jest"
+  },
+  "author": "Jayden Maddison",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.5.0",
+    "apollo-client": "^2.5.0",
+    "apollo-link-schema": "^1.1.6",
+    "expo": "^32.0.6",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.4",
+    "react": "16.5.0",
+    "react-apollo": "^2.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-navigation": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/expo": "^32.0.3",
+    "@types/graphql": "^14.0.7",
+    "@types/jest": "^24.0.9",
+    "@types/react": "^16.8.5",
+    "@types/react-native": "^0.57.38",
+    "@types/react-navigation": "^3.0.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "@typescript-eslint/eslint-plugin": "^1.4.2",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "expo-cli": "^2.11.3",
+    "jest": "^24.1.0",
+    "jest-expo": "^32.0.0",
+    "react-dom": "^16.8.3",
+    "react-test-renderer": "^16.8.3",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testMatch": [
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)+(spec|test).ts?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "jsx": "react"
+        }
+      }
+    }
+  }
+}
