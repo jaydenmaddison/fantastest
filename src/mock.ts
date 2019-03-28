@@ -53,7 +53,7 @@ const commentaries = [{
 }, {
   id: 1007,
   title: 'This is the second commentary',
-  text: 'This is the second commentary',
+  text: 'This is the second commentary This is the second commentary This is the second commentary',
   minute: 28,
   keyMoment: false,
 }, {
