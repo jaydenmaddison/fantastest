@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import CommentaryList from '../components/CommentaryList.tsx';
+import CommentaryList from '../components/CommentaryList';
 
 const styles = StyleSheet.create({
   container: {

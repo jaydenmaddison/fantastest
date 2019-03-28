@@ -45,15 +45,22 @@ interface Data {
   }[];
 }
 
+interface Props {
+  foo: string;
+}
+
 class QueryCommentaries extends Query<Data> {}
 
-export default class CommentaryList extends React.Component<Props, States> {
-  public constructor(props) {
+export default class CommentaryList extends React.Component<Props> {
+  public constructor(props: Props) {
     super(props);
     this.handlePress = this.handlePress.bind(this);
+    this.flatListRef = React.createRef();
   }
 
-  private handlePress(i) {
+  private flatListRef: React.RefObject<FlatList>;
+
+  private handlePress(i: number) {
     this.flatListRef.scrollToIndex({ animated: true, index: i });
   }
 

@@ -66,7 +66,7 @@ const Drawer = posed.View({
   closed: { y: 220 },
 });
 
-export default class MomentsList extends React.Component<Props, States> {
+export default class MomentsList extends React.Component<States> {
   public state = {
     open: false,
   };
