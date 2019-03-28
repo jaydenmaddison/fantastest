@@ -27,8 +27,9 @@ class QueryCommentaries extends Query<Data> {}
 
 export default class CommentaryList extends React.Component<Props, States> {
 
-  private scrollToIndex = (id) => {
-    this.flatListRef.scrollToIndex({animated: true, index: id});
+  public handlePress(id) {
+    //console.error(id);
+      this.flatListRef.scrollToIndex({animated: true, index: id});
   }
 
   public render() {
@@ -40,12 +41,17 @@ export default class CommentaryList extends React.Component<Props, States> {
           if (!data) return <Text>No Data</Text>;
           return (
             <View style={styles.container}>
+              <Text style={styles.title}>
+                Live commentary
+              </Text>
               <FlatList
                 data={data.commentaries}
+                ref={(ref) => { this.flatListRef = ref; }}
                 keyExtractor={item => String(item.id)}
+                style={styles.flatList}
                 renderItem={({ item }) => <CommentaryItem {...item} />}
               />
-              <MomentsList />
+              <MomentsList scrollToIndex={this.handlePress.bind(this)} />
             </View>
           );
         }}
@@ -56,7 +62,17 @@ export default class CommentaryList extends React.Component<Props, States> {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     paddingTop: 50,
+    flex:1
+  },
+  flatList: {
+    padding: 20
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+    color: '#FFF'
   }
 });
