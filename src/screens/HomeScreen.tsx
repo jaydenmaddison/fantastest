@@ -4,20 +4,19 @@ import CommentaryList from '../components/CommentaryList.tsx';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#25274D',
     flex: 1,
   },
 });
 
 const HomeScreen = () => (
   <View style={styles.container}>
-        <Text>Home Screen</Text>
         <CommentaryList />
   </View>
 );
 
 HomeScreen.navigationOptions = {
-  title: 'Home',
+  header: null,
 };
 
 export default HomeScreen;
