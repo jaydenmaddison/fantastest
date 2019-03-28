@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
@@ -18,22 +19,26 @@ const styles = StyleSheet.create({
   },
   minute: {
     color: '#25274D',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   textContainer: {
-    paddingLeft: 20,
     borderLeftWidth: 3,
     borderColor: '#464866',
     paddingBottom: 40,
     paddingLeft: 40,
-    marginHorizontal: 20
+    marginHorizontal: 20,
   },
   text: {
     color: '#FFF',
-  }
+  },
 });
 
-export default CommentaryItem = ({text, minute}) => (
+interface CommentaryProps {
+  text: string;
+  minute: number;
+}
+
+const CommentaryItem: React.SFC<CommentaryProps> = ({ text, minute }) => (
   <View style={styles.container}>
     <View style={styles.minuteContainer}>
       <Text style={styles.minute}>
@@ -46,4 +51,6 @@ export default CommentaryItem = ({text, minute}) => (
       </Text>
     </View>
   </View>
-)
+);
+
+export default CommentaryItem;

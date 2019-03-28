@@ -1,9 +1,31 @@
 import * as React from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
-import CommentaryItem from './CommentaryItem';
-import MomentsList from './MomentsList';
+import {
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native';
 import graphqlTag from 'graphql-tag';
 import { Query } from 'react-apollo';
+import CommentaryItem from './CommentaryItem';
+import MomentsList from './MomentsList';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+    flex: 1,
+  },
+  flatList: {
+    padding: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+    color: '#FFF',
+  },
+});
 
 const QUERY_COMMENTARIES = graphqlTag`
 query queryCommentaries {
@@ -26,10 +48,13 @@ interface Data {
 class QueryCommentaries extends Query<Data> {}
 
 export default class CommentaryList extends React.Component<Props, States> {
+  public constructor(props) {
+    super(props);
+    this.handlePress = this.handlePress.bind(this);
+  }
 
-  public handlePress(id) {
-    //console.error(id);
-      this.flatListRef.scrollToIndex({animated: true, index: id});
+  private handlePress(i) {
+    this.flatListRef.scrollToIndex({ animated: true, index: i });
   }
 
   public render() {
@@ -51,7 +76,7 @@ export default class CommentaryList extends React.Component<Props, States> {
                 style={styles.flatList}
                 renderItem={({ item }) => <CommentaryItem {...item} />}
               />
-              <MomentsList scrollToIndex={this.handlePress.bind(this)} />
+              <MomentsList scrollToIndex={this.handlePress} />
             </View>
           );
         }}
@@ -59,20 +84,3 @@ export default class CommentaryList extends React.Component<Props, States> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-    flex:1
-  },
-  flatList: {
-    padding: 20
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
-    color: '#FFF'
-  }
-});

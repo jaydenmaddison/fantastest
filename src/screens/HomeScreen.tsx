@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+} from 'react-native';
 import CommentaryList from '../components/CommentaryList.tsx';
 
 const styles = StyleSheet.create({
@@ -11,7 +14,7 @@ const styles = StyleSheet.create({
 
 const HomeScreen = () => (
   <View style={styles.container}>
-        <CommentaryList />
+    <CommentaryList />
   </View>
 );
 
