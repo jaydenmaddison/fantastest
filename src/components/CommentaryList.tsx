@@ -81,7 +81,15 @@ export default class CommentaryList extends React.Component<Props> {
                 ref={(ref) => { this.flatListRef = ref; }}
                 keyExtractor={item => String(item.id)}
                 style={styles.flatList}
-                renderItem={({ item }) => <CommentaryItem {...item} />}
+                renderItem={({ item, index }) => (
+                  <CommentaryItem
+                    {...item}
+                    index={index}
+                    dataLength={data.commentaries.length}
+                  />
+                )
+
+                }
               />
               <MomentsList scrollToIndex={this.handlePress} />
             </View>

@@ -31,21 +31,31 @@ const styles = StyleSheet.create({
   text: {
     color: '#FFF',
   },
+  lastChild: {
+    borderLeftWidth: 0,
+  },
 });
 
 interface CommentaryProps {
   text: string;
   minute: number;
+  dataLength: array;
+  index: number;
 }
 
-const CommentaryItem: React.SFC<CommentaryProps> = ({ text, minute }) => (
+const CommentaryItem: React.SFC<CommentaryProps> = ({
+  text,
+  minute,
+  dataLength,
+  index,
+}) => (
   <View style={styles.container}>
     <View style={styles.minuteContainer}>
       <Text style={styles.minute}>
         {minute}
       </Text>
     </View>
-    <View style={styles.textContainer}>
+    <View style={[styles.textContainer, index === dataLength - 1 && styles.lastChild]}>
       <Text style={styles.text}>
         {text}
       </Text>
