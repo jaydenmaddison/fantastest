@@ -1,0 +1,112 @@
+import * as React from 'react';
+import { FlatList, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import MomentItem from './MomentItem';
+import graphqlTag from 'graphql-tag';
+import { Query } from 'react-apollo';
+import { Ionicons } from '@expo/vector-icons';
+import posed from 'react-native-pose';
+
+const QUERY_COMMENTARIES = graphqlTag`
+query queryCommentaries {
+  commentaries {
+    id
+    title
+    minute
+    keyMoment
+  }
+}
+`;
+
+interface Data {
+  commentaries: {
+    title: string;
+    id: number;
+    minute: number;
+    keyMoment: boolean;
+  }[];
+}
+
+interface States {
+  open: boolean;
+}
+
+class QueryMoments extends Query<Data> {}
+
+const Drawer = posed.View({
+  open: { y: 0 },
+  closed: { y: 220 }
+});
+
+export default class MomentsList extends React.Component<Props, States> {
+  public state = {
+    open: false,
+  };
+
+  private toggleMoments(){
+      if (this.state.open) {
+        this.setState({
+          open: false
+        })
+      } else {
+        this.setState({
+          open: true
+        })
+      }
+  }
+
+  public render(){
+    return (
+      <QueryMoments query={QUERY_COMMENTARIES}>
+        {({ loading, error, data }) => {
+          if (loading) return <Text>Loading...</Text>;
+          if (error) return <Text>Error:{error}</Text>;
+          if (!data) return <Text>No Data</Text>;
+          return (
+            <Drawer pose={this.state.open ? 'open' : 'closed'} style={this.state.open ? {marginTop: 300} : {marginTop: 80}}>
+              <View style={[styles.container]}>
+                  <TouchableOpacity onPress={() => this.toggleMoments()}>
+                    <Text style={styles.title}>
+                      Key moments
+                    </Text>
+                    <View style={styles.chevron}>
+                          {this.state.open && <Ionicons name="ios-arrow-down" size={32} color="#25274D" />}
+                          {!this.state.open&& <Ionicons name="ios-arrow-up" size={32} color="#25274D" />}
+                    </View>
+                  </TouchableOpacity>
+                  <FlatList
+                    data={data.commentaries}
+                    keyExtractor={item => String(item.id)}
+                    renderItem={({ item, index }) => <MomentItem {...item} index={index} scrollToIndex={this.props.scrollToIndex} />}
+                  />
+                </View>
+            </Drawer>
+          );
+        }}
+      </QueryMoments>
+    )
+  }
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#2E9CCA',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 300
+  },
+  title: {
+    color: '#25274D',
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20
+  },
+  chevron: {
+    position: 'absolute',
+    right: 20,
+    top: 20
+  }
+});
