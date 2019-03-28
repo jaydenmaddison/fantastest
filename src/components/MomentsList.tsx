@@ -62,7 +62,7 @@ interface States {
 class QueryMoments extends Query<Data> {}
 
 const Drawer = posed.View({
-  open: { y: 0 },
+  open: { y: 20 },
   closed: { y: 220 },
 });
 
@@ -90,7 +90,7 @@ export default class MomentsList extends React.Component<States> {
           const { open } = this.state;
           const { scrollToIndex } = this.props;
           return (
-            <Drawer pose={open ? 'open' : 'closed'} style={open ? { marginTop: 300 } : { marginTop: 80 }}>
+            <Drawer pose={open ? 'open' : 'closed'} style={open ? { marginTop: 280 } : { marginTop: 80 }}>
               <View style={styles.container}>
                 <TouchableOpacity onPress={() => this.toggleMoments()}>
                   <Text style={styles.title}>
