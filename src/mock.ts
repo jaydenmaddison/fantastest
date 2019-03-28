@@ -9,7 +9,7 @@ type Commentary {
   id: ID!,
   title: String!,
   text: String!,
-  minute: Number!
+  minute: Int!
 }
 `;
 
