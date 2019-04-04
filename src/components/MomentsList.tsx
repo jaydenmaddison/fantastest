@@ -56,7 +56,7 @@ interface Data {
 }
 
 interface States {
-  open: boolean;
+  scrollToIndex: any;
 }
 
 class QueryMoments extends Query<Data> {}

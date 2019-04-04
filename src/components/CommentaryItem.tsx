@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
 interface CommentaryProps {
   text: string;
   minute: number;
-  dataLength: array;
   index: number;
+  dataLength: number;
 }
 
 const CommentaryItem: React.SFC<CommentaryProps> = ({

@@ -31,6 +31,7 @@ interface MomentProps {
   minute: number;
   index: number;
   keyMoment: boolean;
+  scrollToIndex: any;
 }
 
 const MomentItem: React.SFC<MomentProps> = ({
@@ -44,12 +45,12 @@ const MomentItem: React.SFC<MomentProps> = ({
     return (
       <TouchableOpacity onPress={() => scrollToIndex(index)}>
         <View style={styles.container}>
-          <View style={styles.minuteContainer}>
+          <View>
             <Text style={styles.minute}>
               {minute}
             </Text>
           </View>
-          <View style={styles.textContainer}>
+          <View>
             <Text style={styles.text}>
               {title}
             </Text>
